@@ -1,0 +1,12 @@
+.list-group {
+  margin-top: 1rem;
+}
+
+.list-group-item {
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.list-group-item h2 {
+  margin-bottom: 0.25rem;
+}
