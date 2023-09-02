@@ -15,11 +15,9 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid bg-light">
-      <p class="h2 text-danger p-3">Cardápio Digital</p>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <p class="text-danger text-uppercase fs-2 m-0 p-2">Cardápio Digital</p>
+      <button id="btn-pedido" type="button" data-bs-toggle="modal" data-bs-target="#nameCustomerModal"
+        data-bs-whatever="@getbootstrap" class="btn btn-success text-uppercase p-3 fs-4">Iniciar Pedido</button>
     </div>
   </nav>
 
@@ -30,7 +28,7 @@
         <div class="col-md-12">
           <h1 class="text-center text-white p-1 m-4">Lanches Mania</h1>
 
-          <!-- Lista de lanches -->
+          <!-- Lista de produtos -->
           <ul class="list-group" id="lanches">
             <h2 class="m-3 text-white">Lanches</h2>
           </ul>
@@ -45,11 +43,33 @@
     </div>
   </div>
 
-  <!-- JavaScript do Bootstrap -->
+  <div class="modal fade" id="nameCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h1 class="modal-title fs-2 text-primary" id="exampleModalLabel">Iniciar Pedido</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="customer-name" class="col-form-label fs-5">Digite seu nome:</label>
+              <input type="text" class="form-control fs-5" id="customer-name">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer mt-2">
+          <button type="button" class="btn btn-secondary mt-2 fs-4" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary mt-2 fs-4" onclick="iniciarPedido()">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
-  <script type="module" src="./src/produtos.js"></script>
+  <script type="module" src="./src/main.js"></script>
 
 </body>
 
