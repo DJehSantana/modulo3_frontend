@@ -7,6 +7,7 @@ export class ListaPedidos {
   static salvarPedido(pedido) {
     try {
       if (pedido instanceof Pedido) {
+        console.log(pedido);
         ListaPedidos.pedidos.push(pedido);
       } else {
         throw new Error('Pedido inválido!');

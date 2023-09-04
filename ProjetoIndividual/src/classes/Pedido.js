@@ -32,12 +32,28 @@ export class Pedido {
     }
 
   }
-  removerProduto(produto) {
-    const index = this.produtos.findIndex(p => p.id === produto.id);
+  removerProduto(pedido, produto) {
+    const index = pedido.produtos.findIndex(p => p.id === produto.id);
     let result;
     index != -1 ? result = this.pedidos.splice(index, 1) : result = 'produto não encontrado';
 
     console.log(result);
+  }
+
+  buscarProdutoPorId(pedido, id) {
+    const produto = pedido.produtos.find(p => p.id === id);
+    if (!produto) {
+      return null;
+    }
+    return produto;
+  }
+
+  existeProdutoLista(pedido, id) {
+    const index = pedido.produtos.findIndex(p => p.id === id);
+    if (index == -1) {
+      return false;
+    }
+    return true;
   }
 }
 

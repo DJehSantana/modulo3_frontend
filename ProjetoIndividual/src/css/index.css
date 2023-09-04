@@ -7,7 +7,8 @@
 
 .background {
   position: relative;
-  max-width: 100vw;
+  width: 100vw;
+  transition: margin-right 0.5s;
 }
 
 .background::after {
@@ -22,4 +23,44 @@
   right: 0;
   position: absolute;
   z-index: -1;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100vh;
+  background-color: #343a40;
+  color: white;
+  transform: translateX(350px);
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-activated .background {
+  margin-right: 330px;
+  /* ajuste este valor de acordo com a largura do seu menu */
+}
+
+#sidebar.active {
+  transform: translateX(0);
+}
+
+.icones {
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.quantidade {
+  width: 60px;
+  text-align: center;
+}
+
+.contador {
+  display: none;
+}
+
+.contador.active {
+  display: block;
 }

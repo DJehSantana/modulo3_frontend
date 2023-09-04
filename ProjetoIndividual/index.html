@@ -21,49 +21,61 @@
     </div>
   </nav>
 
-  <div class="background">
-    <!-- Conteúdo do cardápio -->
-    <div class="container pb-3">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-center text-white p-1 m-4">Lanches Mania</h1>
+  <div class="d-flex p-0 m-0">
 
-          <!-- Lista de produtos -->
-          <ul class="list-group" id="lanches">
-            <h2 class="m-3 text-white">Lanches</h2>
-          </ul>
-          <ul class="list-group" id="porcoes">
-            <h2 class="m-3 text-white">Porções</h2>
-          </ul>
-          <ul class="list-group" id="bebidas">
-            <h2 class="m-3 text-white">Bebidas</h2>
-          </ul>
+    <div class="background flex-grow-1">
+      <!-- Conteúdo do cardápio -->
+      <div class="container pb-3">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center text-white p-1 m-4">Lanches Mania</h1>
+
+            <!-- Lista de produtos -->
+            <ul class="list-group" id="lanches">
+              <h2 class="m-3 text-white">Lanches</h2>
+            </ul>
+            <ul class="list-group" id="porcoes">
+              <h2 class="m-3 text-white">Porções</h2>
+            </ul>
+            <ul class="list-group" id="bebidas">
+              <h2 class="m-3 text-white">Bebidas</h2>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="modal fade" id="nameCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content p-3">
-        <div class="modal-header">
-          <h1 class="modal-title fs-2 text-primary" id="exampleModalLabel">Iniciar Pedido</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="customer-name" class="col-form-label fs-5">Digite seu nome:</label>
-              <input type="text" class="form-control fs-5" id="customer-name">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer mt-2">
-          <button type="button" class="btn btn-secondary mt-2 fs-4" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary mt-2 fs-4" onclick="iniciarPedido()">Confirmar</button>
+    <div class="modal fade" id="nameCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content p-3">
+          <div class="modal-header">
+            <h1 class="modal-title fs-2 text-primary" id="exampleModalLabel">Iniciar Pedido</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="customer-name" class="col-form-label fs-5">Digite seu nome:</label>
+                <input type="text" class="form-control fs-5" id="customer-name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer mt-2">
+            <button type="button" class="btn btn-secondary mt-2 fs-4" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" id="sidebarToggle" class="btn btn-primary mt-2 fs-4"
+              data-bs-dismiss="modal">Confirmar</button>
+          </div>
         </div>
       </div>
     </div>
+
+    <div id="sidebar" class="p-3">
+      <h4>Pedido</h4>
+      <ul class="nav flex-column listaProdutos">
+      </ul>
+      <button class="btn btn-danger mt-2 fs-4" id="btnCancelarPedido">Cancelar</button>
+    </div>
+
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
