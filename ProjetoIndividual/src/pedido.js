@@ -27,19 +27,23 @@ const montarPedido = (jaListado, adicionar, produto) => {
       }
     }
   } else {
-    if (adicionar) {
-      const newProd = document.createElement('li');
-      const quantidade = document.createElement('p');
-      quantidade.classList.add('qtde');
+    //Caso novo produto, só será chamado o método se for para adicionar, cria um novo elemento   
+    const newProd = document.createElement('li');
+    const quantidade = document.createElement('p');
 
-      newProd.classList.add('list-group-item', 'fs-5', `item-${produto.id}`);
-      newProd.innerHTML = `
+    quantidade.classList.add('qtde');
+    newProd.classList.add('list-group-item', 'fs-5', `item-${produto.id}`);
+
+    //Montando conteúdo do elemento
+    newProd.innerHTML = `
     ${produto.nome} - R$ ${(produto.preco).toFixed(2)} 
-  `;
-      quantidade.innerHTML = `${produto.quantidade}`;
-      newProd.appendChild(quantidade);
-      listaProdutos.appendChild(newProd);
-    }
+    `;
+    quantidade.innerHTML = `${produto.quantidade}`;
+
+    //Adicionando elementos
+    newProd.appendChild(quantidade);
+    listaProdutos.appendChild(newProd);
+
   }
 }
 
@@ -47,11 +51,11 @@ export const adicionarProduto = (produto) => {
   try {
     const pedido = ListaPedidos.recuperarUltimoPedido();
     console.log(pedido);
+
     if (pedido && produto instanceof Produtos) {
       produto.quantidade++;
-
       const produtoJaExiste = pedido.existeProdutoLista(pedido, produto.id);
-      console.log(produtoJaExiste);
+
       if (produtoJaExiste) {
         montarPedido(true, true, produto);
       } else {
@@ -82,17 +86,14 @@ export const removerProduto = (produto) => {
       if (!produtoJaExiste) {
         throw new Error('Erro ao remover produto!');
       }
-      console.log(produto.quantidade);
-      produto.quantidade--;
-      console.log(produto.quantidade);
 
+      produto.quantidade--;
       montarPedido(true, false, produto);
 
       pedido.valorTotal -= produto.preco;
       pedido.removerProduto(pedido, produto);
 
       total.innerText = `R$ ${(pedido.valorTotal).toFixed(2)}`;
-      console.log(produto.quantidade);
 
       return produto.quantidade;
 
@@ -109,16 +110,13 @@ export const cancelarPedido = () => {
   const pedido = ListaPedidos.recuperarUltimoPedido();
   ListaPedidos.deletarPedido(pedido);
 
-  //remove todos os filhos da lista de produtos
-  const children = listaProdutos.children;
-  for (let i = children.length - 1; i >= 0; i--) {
-    listaProdutos.removeChild(children[i]);
-  }
-
-  total.innerHTML = "Valor Total: ";
-  taxaEntrega.innerHTML = "Taxa entrega: ";
+  document.querySelectorAll('.contador').forEach(element => element.classList.remove('active'));
   sidebar.classList.toggle('active');
   document.body.classList.toggle('menu-activated');
+
+  setTimeout(() => {
+    location.reload();
+  }, 5000);
 }
 
 

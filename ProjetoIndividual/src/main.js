@@ -11,6 +11,7 @@ const bebidas = document.getElementById("bebidas");
 
 function init() {
   try {
+
     popularBD();
 
     // Criando a lista de produtos
@@ -42,6 +43,7 @@ function init() {
       });
     }
 
+    //Adicionando elementos da lista na página
     const exibirProdutos = () => {
       const resultadoLanches = montarLista(listaLanches);
       lanches.innerHTML += resultadoLanches.join("");
@@ -67,20 +69,25 @@ const btnConfirmar = document.getElementById('sidebarToggle');
 const btnCancelarPedido = document.getElementById('btnCancelarPedido');
 const sidebar = document.getElementById('sidebar');
 
-btnConfirmar.addEventListener('click', () => {
-  const nomeCliente = document.getElementById('customer-name').value;
 
-  if (!nomeCliente) {
-    throw new Error('Nome inválido ou vazio!');
+btnConfirmar.addEventListener('click', () => {
+  try {
+    const nomeCliente = document.getElementById('customer-name').value;
+
+    if (!nomeCliente) {
+      throw new Error('Nome inválido ou vazio!');
+    }
+    sidebar.classList.toggle('active');
+    document.body.classList.toggle('menu-activated');
+    document.querySelectorAll('.contador').forEach(element => element.classList.add('active'));
+
+    iniciarPedido(nomeCliente);
+  } catch (error) {
+    alert(error.message);
   }
-  sidebar.classList.toggle('active');
-  document.body.classList.toggle('menu-activated');
-  document.querySelectorAll('.contador').forEach(element => element.classList.add('active'));
-  iniciarPedido(nomeCliente);
 });
 
 btnCancelarPedido.addEventListener('click', () => {
-  document.querySelectorAll('.contador').forEach(element => element.classList.remove('active'));
   cancelarPedido();
 });
 
@@ -102,6 +109,10 @@ document.querySelectorAll('.produto').forEach(element => {
 
       const produto = BD.find(prod => prod.id == key);
       const quantidade = removerProduto(produto);
+      if (!quantidade || quantidade == undefined) {
+        input.value = 0;
+        return;
+      }
       input.value = quantidade;
     }
 
@@ -140,12 +151,8 @@ if (botaoConfirmar) {
     body.appendChild(valor);
     toastBootstrap.show();
 
+    //Após exibir mensagem com o pedido, cancela o pedido e recarrega a página
     cancelarPedido();
-    document.querySelectorAll('.contador').forEach(element => element.classList.remove('active'));
-
-    setTimeout(() => {
-      location.reload();
-    }, 7000);
   });
 }
 
