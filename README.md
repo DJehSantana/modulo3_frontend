@@ -25,7 +25,8 @@ Durante o desenvolvimento deste projeto, foram aplicados os seguintes conceitos 
 - Herança e Polimofismo
 - Métodos estáticos 
 
-## 🚀 Começando
+## 🚀 Agora teste você mesmo!
 
+[Lanches Mania](https://djehsantana.github.io/modulo3_frontend/ProjetoIndividual/)  
 
 
