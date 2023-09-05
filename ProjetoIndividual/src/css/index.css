@@ -13,7 +13,7 @@
 
 .background::after {
   content: "";
-  background-image: url('../assets/adesivo-lanchonete-lanche-hamburguer-artesanal-fast-food-hd-decorativo.jpg');
+  background-image: url('../assets/hamburguer-com-carne-tomate-pepino-em-conserva-e-bacon-frito.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.9;
@@ -46,6 +46,10 @@
   transform: translateX(0);
 }
 
+.produto {
+  opacity: 0.9;
+}
+
 .icones {
   width: 30px;
   text-align: center;
@@ -63,4 +67,8 @@
 
 .contador.active {
   display: block;
+}
+
+#liveToastBtn {
+  display: none;
 }

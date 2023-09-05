@@ -1,7 +1,8 @@
 import { Bebidas } from "./classes/Bebidas.js";
 import { Lanches } from "./classes/Lanches.js";
+import { ListaPedidos } from "./classes/ListaPedidos.js";
 import { Porcoes } from "./classes/Porcoes.js";
-import { adicionarNovoProduto, cancelarPedido, iniciarPedido, removerProduto } from "./pedido.js";
+import { adicionarProduto, cancelarPedido, iniciarPedido, removerProduto } from "./pedido.js";
 import { BD, popularBD } from "./popularBD.js";
 
 const lanches = document.getElementById("lanches");
@@ -33,7 +34,7 @@ function init() {
             <p class="fs-5">${produto.ingredientes ? produto.ingredientes : produto.peso ? produto.peso : `${produto.tamanho} - ${produto.embalagem}`}</p >
             <div class="contador">
               <img src="./src/assets/sinal-de-menos.png" class="me-1 icones i-menos">
-              <input type="text" class="quantidade fs-5 m-0 p-1 " value="${produto.quantidade}"> 
+              <input type="text" class="quantidade fs-5 m-0 p-1 " value=" ${produto.quantidade}"> 
               <img src="./src/assets/mais.png" class="ms-1 icones i-mais">  
             </div>     
           </li > `
@@ -51,64 +52,102 @@ function init() {
       const resultadoBebidas = montarLista(listaBebidas);
       bebidas.innerHTML += resultadoBebidas.join("");
     }
+
     exibirProdutos();
 
-    //Adicionando evento que ativa modal do pedido
-    const btnConfirmar = document.getElementById('sidebarToggle');
-    const btnCancelarPedido = document.getElementById('btnCancelarPedido');
-
-    btnConfirmar.addEventListener('click', () => {
-      const nomeCliente = document.getElementById('customer-name').value;
-
-      if (!nomeCliente) {
-        throw new Error('Nome inválido ou vazio!');
-      }
-      document.getElementById('sidebar').classList.toggle('active');
-      document.body.classList.toggle('menu-activated');
-      document.querySelectorAll('.contador').forEach(element => element.classList.add('active'));
-      iniciarPedido(nomeCliente);
-    });
-
-    btnCancelarPedido.addEventListener('click', () => {
-      document.querySelectorAll('.contador').forEach(element => element.classList.remove('active'));
-      cancelarPedido();
-    });
-
-    document.querySelectorAll('.produto').forEach(element => {
-
-      element.addEventListener('click', (event) => {
-
-        if (event.target.matches('.i-mais')) {
-
-          const liParent = event.target.closest('li');
-          const input = liParent.querySelector('.quantidade');
-          const key = liParent.getAttribute('key');
-
-          const produto = BD.find(prod => prod.id == key);
-
-          const quantidade = adicionarNovoProduto(produto);
-          input.value = quantidade;
-        } else if (event.target.matches('.i-menos')) {
-
-          const liParent = event.target.closest('li');
-          const input = liParent.querySelector('.quantidade');
-          const key = liParent.getAttribute('key');
-
-          const produto = BD.find(prod => prod.id == key);
-          const quantidade = removerProduto(produto)
-          console.log(quantidade);
-          input.value = quantidade;
-
-        }
-
-      });
-    });
   } catch (error) {
     console.log(error.message);
   }
 }
 
 init();
+
+//Adicionando evento que ativa modal do pedido
+const btnConfirmar = document.getElementById('sidebarToggle');
+const btnCancelarPedido = document.getElementById('btnCancelarPedido');
+const sidebar = document.getElementById('sidebar');
+
+btnConfirmar.addEventListener('click', () => {
+  const nomeCliente = document.getElementById('customer-name').value;
+
+  if (!nomeCliente) {
+    throw new Error('Nome inválido ou vazio!');
+  }
+  sidebar.classList.toggle('active');
+  document.body.classList.toggle('menu-activated');
+  document.querySelectorAll('.contador').forEach(element => element.classList.add('active'));
+  iniciarPedido(nomeCliente);
+});
+
+btnCancelarPedido.addEventListener('click', () => {
+  document.querySelectorAll('.contador').forEach(element => element.classList.remove('active'));
+  cancelarPedido();
+});
+
+//Adicionando evento para adição e remoção de produtos no pedido
+document.querySelectorAll('.produto').forEach(element => {
+
+  element.addEventListener('click', (event) => {
+    const liParent = event.target.closest('li');
+    const input = liParent.querySelector('.quantidade');
+    const key = liParent.getAttribute('key');
+
+    if (event.target.matches('.i-mais')) {
+
+      const produto = BD.find(prod => prod.id == key);
+      const quantidade = adicionarProduto(produto);
+      input.value = quantidade;
+
+    } else if (event.target.matches('.i-menos')) {
+
+      const produto = BD.find(prod => prod.id == key);
+      const quantidade = removerProduto(produto);
+      input.value = quantidade;
+    }
+
+  });
+});
+
+//Adicionando evento para exibir mensagem após pedido confirmado
+const toastLiveExample = document.getElementById('liveToast');
+const botaoConfirmar = document.getElementById('liveToastBtn');
+
+if (botaoConfirmar) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+  const body = toastLiveExample.querySelector('.toast-body');
+
+  botaoConfirmar.addEventListener('click', () => {
+    const pedido = ListaPedidos.recuperarUltimoPedido();
+    const itensUnicos = pedido.produtos.filter((prod, index) => {
+      return (
+        index ===
+        pedido.produtos.findIndex(
+          elem =>
+            elem.id === prod.id
+        )
+      );
+    });
+
+    for (const prod of itensUnicos) {
+      const item = document.createElement('p');
+      item.innerHTML = `
+        ${prod.nome} - R$ ${(prod.preco).toFixed(2)} x ${prod.quantidade}
+      `;
+      body.appendChild(item);
+    }
+    const valor = document.createElement('small');
+    valor.innerHTML = `Total: R$ ${(pedido.valorTotal).toFixed(2)}`
+    body.appendChild(valor);
+    toastBootstrap.show();
+
+    cancelarPedido();
+    document.querySelectorAll('.contador').forEach(element => element.classList.remove('active'));
+
+    setTimeout(() => {
+      location.reload();
+    }, 7000);
+  });
+}
 
 
 

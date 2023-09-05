@@ -12,17 +12,17 @@ export const popularBD = () => {
 
   BD.push(lanche1, lanche2, lanche3);
 
-  const porcao1 = new Porcoes(1, "Porção de Batata", 18.00, "350g", "Quente");
-  const porcao2 = new Porcoes(2, "Porção de Batata", 30.00, "700g", "Quente");
-  const porcao3 = new Porcoes(3, "Porção de Frios", 23.00, "350g", "Frio");
+  const porcao1 = new Porcoes(4, "Porção de Batata", 18.00, "350g", "Quente");
+  const porcao2 = new Porcoes(5, "Porção de Batata", 30.00, "700g", "Quente");
+  const porcao3 = new Porcoes(6, "Porção de Frios", 23.00, "350g", "Frio");
 
   BD.push(porcao1, porcao2, porcao3);
 
-  const bebida1 = new Bebidas(1, "Coca-Cola", 6.00, "350ml", "Refrigerante", "Lata");
-  const bebida2 = new Bebidas(2, "Coca-Cola", 12.00, "2L", "Refrigerante", "Garrafa");
-  const bebida3 = new Bebidas(3, "Guaraná Antártica", 10.00, "2L", "Refrigerante", "Garrafa");
-  const bebida4 = new Bebidas(4, "Suco de Laranja", 10.00, "500ml", "Suco Natural", "Copo");
-  const bebida5 = new Bebidas(5, "Heineken", 6.00, "350ml", "Alcoólica", "Long Neck");
+  const bebida1 = new Bebidas(7, "Coca-Cola", 6.00, "350ml", "Refrigerante", "Lata");
+  const bebida2 = new Bebidas(8, "Coca-Cola", 12.00, "2L", "Refrigerante", "Garrafa");
+  const bebida3 = new Bebidas(9, "Guaraná Antártica", 10.00, "2L", "Refrigerante", "Garrafa");
+  const bebida4 = new Bebidas(10, "Suco de Laranja", 10.00, "500ml", "Suco Natural", "Copo");
+  const bebida5 = new Bebidas(11, "Heineken", 6.00, "350ml", "Alcoólica", "Long Neck");
 
   BD.push(bebida1, bebida2, bebida3, bebida4, bebida5);
 }

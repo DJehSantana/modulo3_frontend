@@ -35,9 +35,7 @@ export class Pedido {
   removerProduto(pedido, produto) {
     const index = pedido.produtos.findIndex(p => p.id === produto.id);
     let result;
-    index != -1 ? result = this.pedidos.splice(index, 1) : result = 'produto não encontrado';
-
-    console.log(result);
+    index != -1 ? result = pedido.produtos.splice(index, 1) : result = 'produto não encontrado';
   }
 
   buscarProdutoPorId(pedido, id) {
