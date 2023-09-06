@@ -10,15 +10,15 @@ export class Pedido {
     this.valorTotal = 0;
   }
 
-  calcularValorTotal() {
-    let valorTotal = 0;
-    if (this.produtos.length != 0) {
-      valorTotal = this.produtos.reduce((acc, prod) => {
-        return acc + prod.preco
-      }, 0)
-    }
-    return valorTotal;
-  }
+  // calcularValorTotal() {
+  //   let valorTotal = 0;
+  //   if (this.produtos.length != 0) {
+  //     valorTotal = this.produtos.reduce((acc, prod) => {
+  //       return acc + prod.preco
+  //     }, 0)
+  //   }
+  //   return valorTotal;
+  // }
 
   adicionarProduto(produto) {
     try {

@@ -25,7 +25,19 @@ Durante o desenvolvimento deste projeto, foram aplicados os seguintes conceitos 
 - Herança e Polimofismo
 - Métodos estáticos 
 
-## 🚀 Agora teste você mesmo!
+## 📊 Diagrama UML
+
+Como parte do projeto, desenvolvi um Diagrama UML das classes com seus relacionamentos. <br>
+
+**Relacionamentos:**
+
+As classes: `Lanches`, `Porcoes` e `Bebidas` extendem da classe mãe `Produtos`. Já a classe `ListaPedidos` possui um relacionamento com a classe Pedido, pois seu atributo `pedidos` é uma lista de objetos/instâncias da classe `Pedido`. <br><br>
+Da mesma forma a classe `Pedido` se relaciona com a classe `Produtos`, pois seu atributo `produtos` é uma lista de objetos/instâncias da classe `Produtos`.<br><br>
+<img src="./ProjetoIndividual/src/assets/Diagrama-UML.png" width="730px" height="700px"><br><br>
+
+### 🚀 Link do Projeto
+
+<br>
 
 [Lanches Mania](https://djehsantana.github.io/modulo3_frontend/ProjetoIndividual/)  
 
