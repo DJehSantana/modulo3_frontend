@@ -31,8 +31,9 @@ Como parte do projeto, desenvolvi um Diagrama UML das classes com seus relaciona
 
 **Relacionamentos:**
 
-As classes: `Lanches`, `Porcoes` e `Bebidas` extendem da classe mãe `Produtos`. Já a classe `ListaPedidos` possui um relacionamento com a classe Pedido, pois seu atributo `pedidos` é uma lista de objetos/instâncias da classe `Pedido`. <br><br>
-Da mesma forma a classe `Pedido` se relaciona com a classe `Produtos`, pois seu atributo `produtos` é uma lista de objetos/instâncias da classe `Produtos`.<br><br>
+- As classes: `Lanches`, `Porcoes` e `Bebidas` extendem da classe mãe `Produtos`.
+- A classe `ListaPedidos` possui um relacionamento com a classe Pedido, pois seu atributo `pedidos` é uma lista de objetos/instâncias da classe `Pedido`.
+- A classe `Pedido` se relaciona com a classe `Produtos`, pois seu atributo `produtos` é uma lista de objetos/instâncias da classe `Produtos`.<br><br>
 <img src="./ProjetoIndividual/src/assets/Diagrama-UML.png" width="730px" height="700px"><br><br>
 
 ### 🚀 Link do Projeto
