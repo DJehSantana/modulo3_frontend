@@ -20,7 +20,7 @@ export const iniciarPedido = (nomeCliente) => {
 const montarPedido = (jaListado, adicionar, produto) => {
   if (jaListado) {
     const item = document.querySelector(`.item-${produto.id}`);
-    item.querySelector(`.qtde`).innerHTML = `${produto.quantidade}`;
+    item.querySelector(`.qtde`).innerHTML = ` x ${produto.quantidade}`;
     if (!adicionar) {
       if (produto.quantidade == 0) {
         listaProdutos.removeChild(item);
@@ -29,16 +29,16 @@ const montarPedido = (jaListado, adicionar, produto) => {
   } else {
     //Caso novo produto, só será chamado o método se for para adicionar, cria um novo elemento   
     const newProd = document.createElement('li');
-    const quantidade = document.createElement('p');
+    const quantidade = document.createElement('span');
 
     quantidade.classList.add('qtde');
-    newProd.classList.add('list-group-item', 'fs-5', `item-${produto.id}`);
+    newProd.classList.add('list-group-item', 'fs-5', 'p-1', `item-${produto.id}`);
 
     //Montando conteúdo do elemento
     newProd.innerHTML = `
     ${produto.nome} - R$ ${(produto.preco).toFixed(2)} 
     `;
-    quantidade.innerHTML = `${produto.quantidade}`;
+    quantidade.innerHTML = ` x ${produto.quantidade}`;
 
     //Adicionando elementos
     newProd.appendChild(quantidade);
@@ -54,7 +54,7 @@ export const adicionarProduto = (produto) => {
 
     if (pedido && produto instanceof Produtos) {
       produto.quantidade++;
-      const produtoJaExiste = pedido.existeProdutoLista(pedido, produto.id);
+      const produtoJaExiste = pedido.existeProdutoLista(produto.id);
 
       if (produtoJaExiste) {
         montarPedido(true, true, produto);
@@ -82,7 +82,7 @@ export const removerProduto = (produto) => {
     console.log(pedido);
     if (pedido && produto instanceof Produtos) {
       //caso produto não exista no pedido exibe erro no console
-      const produtoJaExiste = pedido.existeProdutoLista(pedido, produto.id);
+      const produtoJaExiste = pedido.existeProdutoLista(produto.id);
       if (!produtoJaExiste) {
         throw new Error('Erro ao remover produto!');
       }
@@ -91,7 +91,7 @@ export const removerProduto = (produto) => {
       montarPedido(true, false, produto);
 
       pedido.valorTotal -= produto.preco;
-      pedido.removerProduto(pedido, produto);
+      pedido.removerProduto(produto);
 
       total.innerText = `R$ ${(pedido.valorTotal).toFixed(2)}`;
 

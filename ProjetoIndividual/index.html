@@ -13,11 +13,11 @@
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid bg-light">
-      <p class="text-danger text-uppercase fs-2 m-0 p-2">Cardápio Digital</p>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+    <div class="container-fluid">
+      <p class="text-danger text-uppercase fs-2 m-0 p-2">Lanches Mania</p>
       <button id="btn-pedido" type="button" data-bs-toggle="modal" data-bs-target="#nameCustomerModal"
-        data-bs-whatever="@getbootstrap" class="btn btn-success text-uppercase p-3 fs-4">Iniciar Pedido</button>
+        data-bs-whatever="@getbootstrap" class="btn btn-outline-success text-uppercase p-3 fs-4">Iniciar Pedido</button>
     </div>
   </nav>
 
@@ -28,17 +28,17 @@
       <div class="container pb-3">
         <div class="row">
           <div class="col-md-12">
-            <h1 class="text-center text-white p-1 m-4">Lanches Mania</h1>
+            <h1 class="text-center text-white p-1 m-4">Cardápio Digital</h1>
 
             <!-- Lista de produtos -->
             <ul class="list-group" id="lanches">
-              <h2 class="m-3 text-white">Lanches</h2>
+              <h2 class="m-3 text-white fw-bold">Lanches</h2>
             </ul>
             <ul class="list-group" id="porcoes">
-              <h2 class="m-3 text-white">Porções</h2>
+              <h2 class="m-3 text-white fw-bold">Porções</h2>
             </ul>
             <ul class="list-group" id="bebidas">
-              <h2 class="m-3 text-white">Bebidas</h2>
+              <h2 class="m-3 text-white fw-bold">Bebidas</h2>
             </ul>
           </div>
         </div>
@@ -61,9 +61,9 @@
             </form>
           </div>
           <div class="modal-footer mt-2">
-            <button type="button" id="sidebarToggle" class="btn btn-primary mt-2 fs-4"
+            <button type="button" id="sidebarToggle" class="btn btn-outline-success mt-2 fs-4"
               data-bs-dismiss="modal">Confirmar</button>
-            <button type="button" class="btn btn-danger mt-2 fs-4" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-outline-danger mt-2 fs-4" data-bs-dismiss="modal">Cancelar</button>
           </div>
         </div>
       </div>
@@ -84,8 +84,8 @@
 
   <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <strong class="me-auto">Pedido Confirmado</strong>
+      <div class="toast-header bg-danger">
+        <strong class="me-auto text-light">Pedido Confirmado</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body p-2 fs-6">

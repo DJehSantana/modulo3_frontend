@@ -31,7 +31,7 @@ function init() {
       return lista.map((produto) => {
         return (`
           <li key=${produto.id} class="list-group-item produto p-4">
-            <h3 class=" text-info">${produto.nome} - R$ ${(produto.preco).toFixed(2)} </h3>
+            <h3 class=" text-danger">${produto.nome} - R$ ${(produto.preco).toFixed(2)} </h3>
             <p class="fs-5">${produto.ingredientes ? produto.ingredientes : produto.peso ? produto.peso : `${produto.tamanho} - ${produto.embalagem}`}</p >
             <div class="contador">
               <img src="./src/assets/sinal-de-menos.png" class="me-1 icones i-menos">

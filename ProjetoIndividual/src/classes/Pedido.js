@@ -10,16 +10,6 @@ export class Pedido {
     this.valorTotal = 0;
   }
 
-  // calcularValorTotal() {
-  //   let valorTotal = 0;
-  //   if (this.produtos.length != 0) {
-  //     valorTotal = this.produtos.reduce((acc, prod) => {
-  //       return acc + prod.preco
-  //     }, 0)
-  //   }
-  //   return valorTotal;
-  // }
-
   adicionarProduto(produto) {
     try {
       if (produto instanceof Produtos) {
@@ -32,22 +22,23 @@ export class Pedido {
     }
 
   }
-  removerProduto(pedido, produto) {
-    const index = pedido.produtos.findIndex(p => p.id === produto.id);
+  removerProduto(produto) {
+    const index = this.produtos.findIndex(p => p.id === produto.id);
     let result;
-    index != -1 ? result = pedido.produtos.splice(index, 1) : result = 'produto não encontrado';
+    index != -1 ? result = this.produtos.splice(index, 1) : result = 'produto não encontrado';
+    return result;
   }
 
-  buscarProdutoPorId(pedido, id) {
-    const produto = pedido.produtos.find(p => p.id === id);
+  buscarProdutoPorId(id) {
+    const produto = this.produtos.find(p => p.id === id);
     if (!produto) {
       return null;
     }
     return produto;
   }
 
-  existeProdutoLista(pedido, id) {
-    const index = pedido.produtos.findIndex(p => p.id === id);
+  existeProdutoLista(id) {
+    const index = this.produtos.findIndex(p => p.id === id);
     if (index == -1) {
       return false;
     }

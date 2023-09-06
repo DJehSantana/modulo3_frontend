@@ -30,7 +30,7 @@
   top: 0;
   right: 0;
   width: 350px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #343a40;
   color: white;
   transform: translateX(350px);
@@ -39,7 +39,6 @@
 
 .menu-activated .background {
   margin-right: 330px;
-  /* ajuste este valor de acordo com a largura do seu menu */
 }
 
 #sidebar.active {
